@@ -1,4 +1,4 @@
-(() => {
+
   // Serviço de armazenamento local
   class StorageService {
     static get(key) {
@@ -8,6 +8,41 @@
       localStorage.setItem(key, JSON.stringify(data));
     }
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("Working fine")
+    const words = ['Reutilização', 'Criatividade', 'Sustentabilidade', 'Transformação'];
+    const typingElement = document.querySelector('.typing-text');
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      if (!isDeleting) {
+        typingElement.textContent = currentWord.substring(0, charIndex);
+        charIndex++;
+        if (charIndex > currentWord.length) {
+          isDeleting = true;
+          setTimeout(typeEffect, 1000);
+          return;
+        }
+      } else {
+        typingElement.textContent = currentWord.substring(0, charIndex);
+        charIndex--;
+        if (charIndex < 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+          charIndex = 0;
+        }
+      }
+
+      setTimeout(typeEffect, isDeleting ? 50 : 100);
+    }
+
+    typeEffect();
+  });
 
   // CRUD básico de cursos
   class CourseService {
@@ -21,7 +56,7 @@
             category: 'Reciclagem',
             price: 0,
             image: 'https://via.placeholder.com/200?text=Arte+Plastico',
-            video: 'https://www.w3schools.com/html/mov_bbb.mp4', // Substitua por um vídeo real se disponível
+            video: 'https://www.w3schools.com/html/mov_bbb.mp4',
             instructor: 'Ana Verde'
           },
           {
@@ -31,7 +66,7 @@
             category: 'Sustentabilidade',
             price: 0,
             image: 'https://via.placeholder.com/200?text=Moda+Sustentavel',
-            video: 'https://www.w3schools.com/html/mov_bbb.mp4', // Substitua por um vídeo real se disponível
+            video: 'https://www.w3schools.com/html/mov_bbb.mp4',
             instructor: 'Clara Mendes'
           }
         ];
@@ -48,11 +83,8 @@
     }
   }
 
- 
   function renderCourses() {
     const courses = CourseService.getAll();
-
-    
     const categorySelect = document.getElementById('filter-category');
     const categories = [...new Set(courses.map(c => c.category))];
     categorySelect.innerHTML = `<option value="">Todas Categorias</option>` +
@@ -86,7 +118,6 @@
     updateGrid();
   }
 
-  
   function renderCourseDetail(id) {
     const c = CourseService.getById(id);
     if (!c) {
@@ -106,14 +137,12 @@
     `;
   }
 
-  // Função para ocultar todas as seções
   function hideAllSections() {
     document.getElementById('home').classList.add('d-none');
     document.getElementById('courses').classList.add('d-none');
     document.getElementById('course-detail').classList.add('d-none');
   }
 
-  // Roteamento simples via hash para exibir a seção desejada
   function router() {
     hideAllSections();
     const hash = location.hash || '#home';
@@ -134,10 +163,9 @@
     }
   }
 
-  // Inicialização e eventos do roteador
   window.addEventListener('load', () => {
     CourseService.init();
     router();
   });
   window.addEventListener('hashchange', router);
-})();
+

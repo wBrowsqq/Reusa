@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reusa - Catálogo de Cursos</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar (copie a mesma da index ou crie a sua própria) -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="./images/Logo.png" alt="Reusa Logo" width="60" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarNav" aria-controls="navbarNav" 
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.html#about">Sobre</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#partners">Empresas Parceiras</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#contact">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Conteúdo da página de cursos -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="mb-5 text-center">Catálogo de Cursos</h2>
+      <div class="row" id="courses-grid">
+        <!-- Aqui você pode renderizar os cursos. 
+             Se estiver usando JavaScript para preencher os cursos, você pode reutilizar o código que está no seu index.js. -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="py-3">
+    <div class="container text-center">
+      <small>© 2025 Reusa. Todos os direitos reservados.</small>
+    </div>
+  </footer>
+  
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Se quiser reutilizar o script de cursos, pode incluir o index.js ou um arquivo específico para courses -->
+  <script src="index.js"></script>
+</body>
+</html>
