@@ -19,6 +19,9 @@ const User = db.define("User", {
     type: DataTypes.INTEGER,
     allowNull: false
   },
+  image: {
+    type: DataTypes.STRING,
+  },
   isAdmin: {
     type: DataTypes.BOOLEAN,
     allowNull: false
