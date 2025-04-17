@@ -17,9 +17,12 @@ const User = db.define("User", {
   },
   score: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    default: 0,
+    allowNull: false
   },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
+  }
 
 }, {timestamps: false});
 User.hasMany(Post);

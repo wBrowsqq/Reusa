@@ -1,6 +1,7 @@
 import express from "express";
 import conn from "./db/conn.js";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // models
 import { User } from "./models/User.js";
@@ -10,9 +11,16 @@ import { Course } from "./models/Course.js";
 import { Module } from "./models/Module.js";
 import { Lesson } from "./models/Lesson.js";
 
+// Routes
+import { UserRoutes } from "./routes/UserRoutes.js";
+// import postRoutes from "./routes/postRoutes.js";
+// import courseRoutes from "./routes/courseRoutes.js";
+
 const app = express();
 // Config JSON response
 app.use(express.json());
+// Config cookies
+app.use(cookieParser());
 // Solve CORS
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
@@ -23,6 +31,11 @@ try {
 } catch (error) {
   console.log(error);
 }
+
+// Routes
+app.use("/users", UserRoutes);
+// app.use("/post", postRoutes);
+// app.use("/course", courseRoutes);
 
 // Public folder for images
 app.use(express.static("public"));
