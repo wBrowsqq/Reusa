@@ -7,7 +7,7 @@ const createUserToken = async (user, req, res) => {
         {
             name: user.name,
             id: user.id,
-            isAdmin: user.isAdmin,
+            userRole: user.userRole
         }, 
         "ReusaSecret",
         {
@@ -31,7 +31,7 @@ const createUserToken = async (user, req, res) => {
     });
    
     // send response
-    return res.status(201).json({ message: "Usuário cadastrado com sucesso!" });
+    return res.status(201).json({ message: "User loged successfully" });
 }
 
 export { createUserToken };

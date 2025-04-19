@@ -22,10 +22,6 @@ const User = db.define("User", {
   image: {
     type: DataTypes.STRING,
   },
-  isAdmin: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false
-  }
 
 }, {timestamps: false});
 User.hasMany(Post);
