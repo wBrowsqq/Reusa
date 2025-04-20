@@ -100,7 +100,7 @@ export class UserController {
     res.status(200).json({ user: currentUser });
   }
   static async getUserById(req, res) {
-    const { id } = req.params.id;
+    const { id } = req.params;
     const user = await User.findOne({ where: { id } });
 
     if (!user) {
