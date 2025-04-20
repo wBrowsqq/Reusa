@@ -6,6 +6,8 @@ import jwt from "jsonwebtoken";
 import { createUserToken } from "../helpers/create-user-token.js";
 import { getToken } from "../helpers/get-token.js";
 import { verifyToken } from "../helpers/verify-token.js";
+import { getUserByToken } from "../helpers/get-user-by-token.js";
+import { refreshToken } from "../helpers/refresh-token.js";
 
 export class UserController {
   static async Register(req, res) {
@@ -86,22 +88,19 @@ export class UserController {
   }
   static async checkUser(req, res, next) {
     let currentUser = null;
-    if (req.cookies.accessToken)
-    {
-        const token = getToken(req);
-        const decoded = jwt.verify(token, "ReusaSecret");
-        currentUser = await User.findByPk(decoded.id);
-        currentUser.password = undefined;
-    }
-    else
-    {
-        currentUser = null;
+    if (req.cookies.accessToken) {
+      const token = getToken(req);
+      const decoded = jwt.verify(token, "ReusaSecret");
+      currentUser = await User.findByPk(decoded.id);
+      currentUser.password = undefined;
+    } else {
+      currentUser = null;
     }
 
     res.status(200).json({ user: currentUser });
   }
   static async getUserById(req, res) {
-    const { id } = req.params;
+    const { id } = req.params.id;
     const user = await User.findOne({ where: { id } });
 
     if (!user) {
@@ -110,5 +109,79 @@ export class UserController {
     }
 
     res.status(200).json({ user });
+  }
+  static async Update(req, res) {
+    // get id from params
+    const id = req.params.id;
+    // get token
+    const token = getToken(req);
+    // get user by token
+    const user = await getUserByToken(req, res, token);
+    console.log(user);
+    // get user data
+    const { name, email, password, confirmpassword } = req.body;
+    if (req.file) {
+      user.image = req.file.filename;
+    }
+    // empty fields
+    if (!name) {
+      res.status(422).json({ message: "Name is required" });
+      return;
+    }
+
+    if (!email) {
+      res.status(422).json({ message: "Email is required" });
+      return;
+    }
+    // check if email exists
+    const userExists = await User.findOne({ where: { email } });
+    if (user.email !== email && userExists) {
+      res.status(422).json({ message: "Please use another email" });
+      return;
+    }
+    if (!password) {
+      res.status(422).json({ message: "Password is required" });
+      return;
+    }
+    if (!confirmpassword) {
+      res.status(422).json({ message: "Confirm password is required" });
+      return;
+    }
+
+    // check if passwords match
+    if (password !== confirmpassword) {
+      return res.status(409).json({ message: "Passwords do not match" });
+    } 
+
+    // encrypt password
+    const salt = bcrypt.genSaltSync(10);
+    const passwordHash = bcrypt.hashSync(password, salt);
+    // update user, send response
+    await User.update({
+      name,
+      email,
+      password: passwordHash,
+      image: user.image,
+    }, {
+      where: {
+        id
+      }
+    });
+
+    res.status(200).json({ message: "User updated successfully" });
+  }
+  static async refreshUserToken(req, res) {
+    // get token
+    const token = getToken(req);
+    if (token === req.cookies.accessToken) {
+      return res.status(200).json({ message: "Access token is valid yet" });
+    }
+    const user = await getUserByToken(req, res, token);
+    // if no access token
+    if (token === req.cookies.refreshToken) {
+      // refresh old access token
+      await refreshToken(req, res, user);
+      res.status(200).json({ message: "Token refreshed successfully" });
+    }
   }
 }

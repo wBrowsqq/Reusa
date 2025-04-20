@@ -22,7 +22,6 @@ const createUserToken = async (user, req, res) => {
         sameSite: "lax",
         maxAge: 15 * 60 * 1000
     });
-
     res.cookie("refreshToken", token, {
         httpOnly: true,
         secure: false,

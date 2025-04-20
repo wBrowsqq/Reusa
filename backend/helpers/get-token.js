@@ -1,9 +1,18 @@
 import jwt from "jsonwebtoken";
 
 const getToken = (req) => {
-    const token = req.cookies.accessToken;
-    console.log(`token: ${token}`);
-    return token;
+    const tokens = {
+        accessToken: req.cookies.accessToken,
+        refreshToken: req.cookies.refreshToken
+    };
+    if (tokens.accessToken) {
+        return tokens.accessToken;
+    }
+    else
+    {
+        return tokens.refreshToken;
+    }
 }
+
 
 export {getToken};

@@ -2,6 +2,7 @@ import express from "express";
 import conn from "./db/conn.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import bodyParser from "body-parser";
 
 // models
 import { User } from "./models/User.js";
@@ -21,6 +22,9 @@ const app = express();
 app.use(express.json());
 // Config cookies
 app.use(cookieParser());
+// config body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Solve CORS
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
