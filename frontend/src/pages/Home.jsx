@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
+import { Link } from 'react-router-dom';
 export default function Home() {
 
     const typingRef = useRef(null);
@@ -71,9 +71,9 @@ export default function Home() {
             Aprenda, recicle e ganhe recompensas com o Reusa
           </p>
           <div className="text-center">
-            <a href="courses.html" className="btn btn-success btn-lg">
-              Ver Cursos
-            </a>
+          <Link to="/Courses" className="btn btn-success btn-lg">
+        Ver Cursos
+          </Link>
           </div>
         </div>
       </section>
@@ -83,17 +83,14 @@ export default function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
-              <h2>Sobre o Reusa</h2>
-              <p>
-                O Reusa é uma plataforma de reciclagem que oferece cursos educativos
-                para promover a reciclagem e a redução de consumo. Além disso,
-                empresas parceiras oferecem pontos de desconto aos usuários,
-                incentivando práticas sustentáveis e o reaproveitamento de materiais.
+              <h2 className="animate-on-scroll">Sobre o Reusa</h2>
+              <p className="animate-on-scroll">
+                   Na plataforma Reusa, oferecemos cursos online gratuitos que ensinam a transformar materiais recicláveis em peças criativas, úteis e até comercializáveis. São aulas práticas de artesanato, design sustentável, upcycling e educação ambiental, pensadas para todos os níveis — do iniciante ao avançado. Além disso, nossos cursos são desenvolvidos em parceria com especialistas e instituições comprometidas com a sustentabilidade, garantindo conteúdo de qualidade e com aplicação no dia a dia. Ao aprender com o Reusa, o aluno não apenas adquire habilidades manuais, mas também amplia suas oportunidades profissionais e contribui ativamente para um mundo mais consciente.
               </p>
             </div>
             <div className="col-md-6">
               <img
-                src="/images/about-image.jpg"
+                src="/images/About.png"
                 alt="Sobre o Reusa"
                 className="img-fluid"
               />
@@ -107,147 +104,110 @@ export default function Home() {
         <div className="container about-courses-container">
           {/* Texto à esquerda */}
           <div className="about-courses-text">
-            <h1>Veja sobre os cursos</h1>
-            <h6>
+            <h1 className="animate-on-scroll">Veja sobre os cursos</h1>
+            <h6 className="animate-on-scroll">
               Descubra as técnicas e práticas que irão transformar o modo como você lida com o consumo e a reciclagem. Nossos cursos unem teoria e prática para capacitar você a fazer a diferença.
             </h6>
           </div>
           {/* Imagem à direita */}
           <div className="about-courses-image">
-            <img src="/images/Comece%20por%20aqui.png" alt="Imagem sobre cursos" />
+            <img src="/images/Recycle.jpg" alt="Imagem sobre cursos" />
           </div>
         </div>
       </section>
 
-      {/* SEÇÃO: "O que nossos cursos oferecem?" com cards */}
-      <div className="container">
-        <h1 id="courses-benefits-text">O que nossos cursos oferecem?</h1>
+
+      <div>
+    <h1 id="courses-benefits-text" className="animate-on-scroll">O que nossos cursos oferecem?</h1>
+    </div>
+    <section class="facts-about">
+     
+      <div class="card animate-on-scroll">
+        <a class="card1" href="#">
+          <p>Aprenda de forma prática e acessível</p>
+          <p class="small" >
+            Nossos cursos são 100% online, gratuitos e pensados para o dia a dia. Com materiais simples e técnicas criativas, você aprende a reutilizar, criar e transformar, mesmo sem experiência prévia.
+          </p>
+          <div class="go-corner" href="#">
+            <div class="go-arrow">→</div>
+          </div>
+        </a>
       </div>
-      <section className="container facts-about">
-        {/* Card 1 */}
-        <div className="card">
-          <a className="card1" href="#">
-            <h3>This is heading</h3>
-            <p className="small">Card description with lots of great facts and interesting details.</p>
-            <div className="go-corner">
-              <div className="go-arrow">→</div>
-            </div>
-          </a>
-        </div>
-        {/* Card 2 */}
-        <div className="card">
-          <a className="card1" href="#">
-            <h3>This is heading</h3>
-            <p className="small">Card description with lots of great facts and interesting details.</p>
-            <div className="go-corner">
-              <div className="go-arrow">→</div>
-            </div>
-          </a>
-        </div>
-        {/* Card 3 */}
-        <div className="card">
-          <a className="card1" href="#">
-            <h3>This is heading</h3>
-            <p className="small">Card description with lots of great facts and interesting details.</p>
-            <div className="go-corner">
-              <div className="go-arrow">→</div>
-            </div>
-          </a>
-        </div>
-      </section>
 
-      {/* CATÁLOGO DE CURSOS */}
-      <section id="courses">
-        <div className="container">
-          <h2 className="mb-5">Catálogo de Cursos</h2>
-          <div className="row">
-            {/* Curso 1 */}
-            <div className="col-md-4 mb-4">
-              <div className="card">
-                <img src="/images/course1.jpg" className="card-img-top" alt="Curso 1" />
-                <div className="card-body">
-                  <h5 className="card-title">Reciclagem Básica</h5>
-                  <p className="card-text">Aprenda as técnicas essenciais para reciclar e transformar resíduos em novos produtos.</p>
-                  <a href="#" className="btn btn-primary">Ver Curso</a>
-                </div>
-              </div>
-            </div>
-            {/* Curso 2 */}
-            <div className="col-md-4 mb-4">
-              <div className="card">
-                <img src="/images/course2.jpg" className="card-img-top" alt="Curso 2" />
-                <div className="card-body">
-                  <h5 className="card-title">Reciclagem Avançada</h5>
-                  <p className="card-text">Técnicas avançadas para maximizar o reaproveitamento e minimizar desperdícios.</p>
-                  <a href="#" className="btn btn-primary">Ver Curso</a>
-                </div>
-              </div>
-            </div>
-            {/* Curso 3 */}
-            <div className="col-md-4 mb-4">
-              <div className="card">
-                <img src="/images/course3.jpg" className="card-img-top" alt="Curso 3" />
-                <div className="card-body">
-                  <h5 className="card-title">Empreendedorismo Sustentável</h5>
-                  <p className="card-text">Descubra como criar oportunidades de negócio através da sustentabilidade.</p>
-                  <a href="#" className="btn btn-primary">Ver Curso</a>
-                </div>
-              </div>
-            </div>
+     
+      <div class="card animate-on-scroll">
+        <a class="card1" href="#">
+          <p>Ganhe pontos e troque por recompensas</p>
+          <p class="small">
+            Ao concluir cursos, você acumula pontos que podem ser trocados por descontos em cursos pagos e produtos de empresas parceiras. Aprender no Reusa também é ser recompensado por suas conquistas!
+          </p>
+          <div class="go-corner" href="#">
+            <div class="go-arrow">→</div>
           </div>
-        </div>
-      </section>
+        </a>
+      </div>
 
-      {/* EMPRESAS PARCEIRAS */}
-      <section id="partners">
-        <div className="container">
-          <h2 className="text-center mb-5">Empresas Parceiras</h2>
-          <div className="row text-center">
-            <div className="col-md-3 col-6 mb-4">
-              <img src="/images/partner1.png" className="img-fluid" alt="Parceira 1" />
-            </div>
-            <div className="col-md-3 col-6 mb-4">
-              <img src="/images/partner2.png" className="img-fluid" alt="Parceira 2" />
-            </div>
-            <div className="col-md-3 col-6 mb-4">
-              <img src="/images/partner3.png" className="img-fluid" alt="Parceira 3" />
-            </div>
-            <div className="col-md-3 col-6 mb-4">
-              <img src="/images/partner4.png" className="img-fluid" alt="Parceira 4" />
-            </div>
+    
+      <div class="card animate-on-scroll">
+        <a class="card1" href="#">
+          <p> Transforme lixo em oportunidade</p>
+          <p class="small">
+            Com o que seria descartado, você pode construir um novo futuro. Os cursos do Reusa mostram como gerar renda, desenvolver novas habilidades e ainda cuidar do planeta com cada criação.
+          </p>
+          <div class="go-corner" href="#">
+            <div class="go-arrow">→</div>
           </div>
-        </div>
-      </section>
+        </a>
+      </div>
+    </section>
 
-      {/* DEPOIMENTOS */}
-      <section id="testimonials">
-        <div className="container">
-          <h2 className="mb-5">O que dizem nossos usuários</h2>
-          <div className="row">
-            {/* Depoimento 1 */}
-            <div className="col-md-4 mb-4">
-              <div className="card p-3">
-                <p>"O Reusa me ajudou a transformar hábitos e enxergar o lixo de forma diferente. Recomendo a todos!"</p>
-                <h6 className="text-end">- João Silva</h6>
-              </div>
-            </div>
-            {/* Depoimento 2 */}
-            <div className="col-md-4 mb-4">
-              <div className="card p-3">
-                <p>"Cursos bem estruturados e uma idéia inovadora de incentivar a reciclagem. Muito bacana!"</p>
-                <h6 className="text-end">- Maria Oliveira</h6>
-              </div>
-            </div>
-            {/* Depoimento 3 */}
-            <div className="col-md-4 mb-4">
-              <div className="card p-3">
-                <p>"Agora vejo que pequenas atitudes podem transformar o mundo. O Reusa é inspiração!"</p>
-                <h6 className="text-end">- Carlos Pereira</h6>
-              </div>
-            </div>
-          </div>
+    <section id="partners">
+  <div className="container d-flex flex-column align-items-center">
+    <h2 className="text-center mb-5 animate-on-scroll">Empresas Parceiras</h2>
+    <div className="row justify-content-center" style={{ maxWidth: '800px' }}>
+      <div className="col-6 col-md-4 mb-4 d-flex justify-content-center">
+        <img src="/images/ParceiraMockup.png" className="img-fluid" alt="Parceira 1" />
+      </div>
+      <div className="col-6 col-md-4 mb-4 d-flex justify-content-center">
+        <img src="/images/ParceiraMockup.png" className="img-fluid" alt="Parceira 2" />
+      </div>
+      <div className="col-6 col-md-4 mb-4 d-flex justify-content-center">
+        <img src="/images/ParceiraMockup.png" className="img-fluid" alt="Parceira 3" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="testimonials">
+  <div className="container">
+    <h2 className="text-center mb-5 animate-on-scroll">O que dizem nossos usuários</h2>
+    <div className="row justify-content-center">
+      {/* Depoimento 1 */}
+      <div className="col-12 col-md-4 mb-2 d-flex animate-on-scroll">
+        <div className="card p-4 shadow-sm w-100 h-100 d-flex flex-column justify-content-between">
+          <p className="flex-grow-1">"O Reusa me ajudou a transformar hábitos e enxergar o lixo de forma diferente. Recomendo a todos!"</p>
+          <h6 className="text-end mt-3 mb-0">- João Silva</h6>
         </div>
-      </section>
+      </div>
+      {/* Depoimento 2 */}
+      <div className="col-12 col-md-4 mb-2 d-flex animate-on-scroll">
+        <div className="card p-4 shadow-sm w-100 h-100 d-flex flex-column justify-content-between">
+          <p className="flex-grow-4">"Cursos bem estruturados e uma ideia inovadora de incentivar a reciclagem. Muito bacana!"</p>
+          <h6 className="text-end mt-3 mb-0">- Maria Oliveira</h6>
+        </div>
+      </div>
+      {/* Depoimento 3 */}
+      <div className="col-12 col-md-4 mb-2 d-flex animate-on-scroll">
+        <div className="card p-4 shadow-sm w-100 h-100 d-flex flex-column justify-content-between">
+          <p className="flex-grow-1">"Agora vejo que pequenas atitudes podem transformar o mundo. O Reusa é inspiração!"</p>
+          <h6 className="text-end mt-3 mb-0">- Carlos Pereira</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* CONTATO */}
       <section id="contact">

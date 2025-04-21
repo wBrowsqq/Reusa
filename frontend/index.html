@@ -20,6 +20,28 @@
 
     <!-- React/Vite inserem este script automaticamente -->
     <script type="module" src="/src/main.jsx"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+  
+        const elements = document.querySelectorAll('.animate-on-scroll');
+        elements.forEach(el => {
+          el.classList.add('hidden');
+          observer.observe(el);
+        });
+      });
+    </script>
+
+
+
   </head>
   <body>
     <div id="root"></div>
