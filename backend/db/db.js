@@ -1,12 +1,20 @@
-import mysql from 'mysql2/promise';
-import dotenv from 'dotenv';
-dotenv.config();
+import Database from 'better-sqlite3';
+import path from 'path';
 
-export const pool = mysql.createPool({
-  host:     process.env.DB_HOST,
-  user:     process.env.DB_USER,
-  password: process.env.DB_PASS,
-  database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10
-});
+// Cria um banco local
+const db = new Database(path.resolve('db.sqlite'));
+
+db.pragma('journal_mode = WAL');
+
+// Cria tabela se não existir
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT UNIQUE,
+    password TEXT,
+    role TEXT
+  )
+`).run();
+
+export default db;

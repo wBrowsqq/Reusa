@@ -1,15 +1,14 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { pool } from '../db/db.js';
+import db from '../db/db.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
-
 const router = express.Router();
 
 // Rota para obter dados do usuário autenticado
-router.get('/me', async (req, res) => {
+router.get('/me', (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
@@ -18,19 +17,14 @@ router.get('/me', async (req, res) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const [users] = await pool.execute('SELECT id, name, email, role FROM users WHERE id = ?', [decoded.id]);
 
-    if (users.length === 0) {
+    const user = db.prepare('SELECT id, name, email, role FROM users WHERE id = ?').get(decoded.id);
+
+    if (!user) {
       return res.status(404).json({ message: 'Usuário não encontrado', field: 'user' });
     }
 
-    const user = users[0];
-    res.json({
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    });
+    res.json(user);
   } catch (error) {
     console.error(error);
     res.status(401).json({ message: 'Token inválido', field: 'token' });
@@ -42,24 +36,20 @@ router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    // Validar tamanho do nome
     if (name.length < 2 || name.length > 50) {
       return res.status(400).json({ message: 'O nome deve ter entre 2 e 50 caracteres', field: 'name' });
     }
 
-    // Validar formato de email (básico)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: 'Email inválido', field: 'email' });
     }
 
-    // Verificar se o email já existe
-    const [existingUsers] = await pool.execute('SELECT * FROM users WHERE email = ?', [email]);
-    if (existingUsers.length > 0) {
+    const existingUser = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+    if (existingUser) {
       return res.status(400).json({ message: 'Email já registrado', field: 'email' });
     }
 
-    // Validar tamanho da senha
     if (password.length < 6) {
       return res.status(400).json({ message: 'A senha deve ter pelo menos 6 caracteres', field: 'password' });
     }
@@ -67,15 +57,13 @@ router.post('/register', async (req, res) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    const [result] = await pool.execute(
-      'INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)',
-      [name, email, hashedPassword, 'user']
-    );
+    const stmt = db.prepare('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)');
+    const result = stmt.run(name, email, hashedPassword, 'user');
 
-    const token = jwt.sign({ id: result.insertId, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: result.lastInsertRowid, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(201).json({
-      id: result.insertId,
+      id: result.lastInsertRowid,
       name,
       email,
       role: 'user',
@@ -92,13 +80,12 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const [users] = await pool.execute('SELECT * FROM users WHERE email = ?', [email]);
+    const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
 
-    if (users.length === 0) {
+    if (!user) {
       return res.status(401).json({ message: 'Email não cadastrado', field: 'email' });
     }
 
-    const user = users[0];
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
