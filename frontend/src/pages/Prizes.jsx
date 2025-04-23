@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../assets/premios.module.css';
+import Popup from '../components/PopUp'; // Importe o componente Popup
 
 const userPoints = 2500; // Pontos reais do usuário (pode ser dinâmico)
 
@@ -37,11 +38,12 @@ const rewardsData = [
 ];
 
 export default function Premios() {
-  const [displayedPoints, setDisplayedPoints] = useState(0); // Estado para os pontos exibidos meu deus asaaaaa
+  const [displayedPoints, setDisplayedPoints] = useState(0); // Estado para os pontos exibidos
+  const [showPopup, setShowPopup] = useState(false); // Estado para controlar a exibição do pop-up
 
   useEffect(() => {
     const duration = 3000; // 3 segundos
-    const increment = userPoints / (duration / 50); // Incremento por intervalo (50ms), divide pela duration
+    const increment = userPoints / (duration / 50); // Incremento por intervalo (50ms)
     let currentPoints = 0;
 
     const interval = setInterval(() => {
@@ -51,10 +53,20 @@ export default function Premios() {
         clearInterval(interval); // para o intervalo
       }
       setDisplayedPoints(Math.floor(currentPoints)); 
-    }, 50); // setei 50ms pra ficar suave mas sla
+    }, 50); // setei 50ms pra ficar suave
 
     return () => clearInterval(interval); 
-  }, []); // Executa só uma vez (foi um inferno fazer)
+  }, []); // Executa só uma vez
+
+  const handleRedeemClick = (reward) => {
+    if (userPoints ) {
+      setShowPopup(true); // Exibe o pop-up 
+    }
+  };
+
+  const closePopup = () => {
+    setShowPopup(false); // Fecha o pop-up
+  };
 
   return (
     <section className={styles.sectionPoints}>
@@ -74,6 +86,7 @@ export default function Premios() {
                   <button
                     className={styles.btnGreen}
                     disabled={userPoints < reward.points}
+                    onClick={() => handleRedeemClick(reward)}
                   >
                     Resgatar
                   </button>
@@ -83,6 +96,14 @@ export default function Premios() {
           ))}
         </div>
       </div>
+
+      {/* Exibe o Pop-up quando necessário */}
+      {showPopup && (
+        <Popup
+          message="Você ainda não pode resgatar prêmios! Vote no Reusa para que um dia isto seja possível!"
+          onClose={closePopup}
+        />
+      )}
     </section>
   );
 }

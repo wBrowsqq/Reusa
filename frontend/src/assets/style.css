@@ -344,3 +344,70 @@
   opacity: 1;
   transform: translateY(0); /* Volta à posição original */
 }
+
+.facts-about {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;    /* permite quebrar em várias linhas */
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  width: calc(33.333% - 20px);  /* três colunas com gap de 20px */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remover altura fixa e largura vw */
+.card {
+  height: auto;
+}
+
+@media (max-width: 992px) {
+  .card {
+    width: calc(50% - 20px);  /* duas colunas */
+  }
+  .about-courses-container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Cards empilham */
+  .card {
+    width: 100% !important;
+  }
+
+  /* Sobre os cursos */
+  .about-courses-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-courses-text h1 {
+    font-size: 2.5rem;
+  }
+  .about-courses-text h6 {
+    font-size: 1rem;
+  }
+
+  /* Hero section menor */
+  #hero {
+    height: 40vh;
+  }
+
+  /* Navbar: reduzir padding */
+  .navbar {
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Depoimentos: uma coluna */
+  #testimonials .row {
+    flex-direction: column;
+  }
+  #testimonials .col-12 {
+    width: 100%;
+  }
+}

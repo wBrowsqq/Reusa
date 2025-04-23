@@ -20,7 +20,7 @@ const useOnScrollAnimation = () => {
       observer.observe(el);
     });
 
-    // Cleanup: desconectar o observer quando o componente for desmontado
+    
     return () => {
       observer.disconnect();
     };
