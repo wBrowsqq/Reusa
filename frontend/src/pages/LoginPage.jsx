@@ -22,7 +22,7 @@ const LoginPage = () => {
     setPasswordError('');
 
     try {
-      const response = await fetch('https://reusa.onrender.com/api/auth/login', {
+      const response = await fetch('https://reusa.onrender.com/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

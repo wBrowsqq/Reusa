@@ -50,7 +50,7 @@ const SignupPage = () => {
     }
 
     try {
-      const response = await fetch('https://reusa.onrender.com/api/auth/register', {
+      const response = await fetch('https://reusa.onrender.com/api/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
