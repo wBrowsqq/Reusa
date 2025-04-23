@@ -5,7 +5,7 @@ export const courses = {
     rating: "⭐ 4.2",
     content: "📘 110+ Conteúdos",
     price: "Gratuito",
-    image: "/public/images/Marina-Azevedo.jpg",
+    image: "/images/Marina-Azevedo.jpg",
     description: "Aprenda a transformar materiais recicláveis em belos objetos artesanais com técnicas simples e criativas.",
     videos: [
       { title: "Introdução", url: "https://www.youtube.com/embed/ZOf3CQj6hWY" },
@@ -19,7 +19,7 @@ export const courses = {
     rating: "⭐ 4.6",
     content: "📘 110+ Conteúdos",
     price: "Gratuito",
-    image: "/public/images/Alana-Soares.jpg",
+    image: "/images/Alana-Soares.jpg",
     description: "Descubra como ganhar dinheiro com a reciclagem e empreender de forma sustentável.",
     videos: [
       { title: "Introdução", url: "https://www.youtube.com/embed/kTj33QH41Cw" },
