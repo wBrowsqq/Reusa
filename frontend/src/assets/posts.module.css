@@ -1,0 +1,314 @@
+/* Estilos gerais */
+.catalogo {
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.icon {
+  border: none;
+  background-color: #fff;
+  text-decoration: none;
+  color: #000;
+}
+.icon i {
+  color: #4caf50;
+  font-size: 30px;
+  transition: 0.3s ease;
+}
+.icon i:hover {
+  color: #2e7d32;
+}
+.icon p {
+  display: inline;
+  text-align: center;
+  font-size: 1.8em;
+  margin-left: 0.5em;
+}
+.ownerImage {
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  margin-left: 1.2em;
+}
+.cardHeader {
+  display: flex;
+  align-items: center;
+}
+.cardHeader h3 {
+  margin-left: 0.8em;
+  display: flex;
+  align-self: center;
+  font-size: 24px;
+  color: #2e7d32;
+}
+/* Cabeçalho */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 auto;
+  color: #2e7d32;
+}
+
+.link {
+  font-weight: 500;
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
+/* Container dos cards */
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.card {
+  flex: 1 1 500px; /* Flex-grow, flex-shrink, base width */
+  max-width: 1000px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+/* Container dos cards */
+.cardsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Card individual */
+.card {
+  flex: 1 1 500px; /* Flex-grow, flex-shrink, base width */
+  max-width: 800px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Imagem do card */
+.cardImg {
+  width: 95%;
+  margin: 0 auto;
+  height: 500px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Conteúdo do card */
+.cardContent {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.cardMeta {
+  font-size: 0.8rem;
+  margin-left: 1.8em;
+  font-style: italic;
+  color: #666;
+}
+
+.postContent {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-left: 1.2em;
+  word-break: break-word;
+}
+
+.detailsBtn {
+  background: none;
+  border: none;
+  color: #2e7d32;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.price {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.accessBtn {
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accessBtn:hover {
+  background-color: #1b5e20;
+}
+
+/* card actions*/
+.cardActions {
+  display: flex;
+  align-items: center;
+  margin-left: 1.2em;
+  margin-bottom: 1.5em;
+}
+.cardActions p {
+  margin-right: 1em;
+}
+
+/* Container geral dos comentários */
+.commentSection {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 2rem auto;
+    gap: 1rem;
+  }
+  
+  /* Form de enviar comentário */
+  .commentForm {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .commentForm input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .commentForm input:focus {
+    outline: none;
+    border-color: #2e7d32;
+  }
+  
+  .commentForm button {
+    padding: 0.75rem 1.5rem;
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color .2s;
+  }
+  
+  .commentForm button:hover {
+    background-color: #1b5e20;
+  }
+  
+  /* Cada comentário */
+  .comment {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  /* Cabeçalho do comentário: avatar + nome */
+  .commentHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5em;
+  }
+  
+  .commentHeader img.ownerImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .commentHeader p {
+    font-weight: 600;
+    color: #2e7d32;
+    margin: 0;
+  }
+  
+  /* Texto do comentário e data */
+  
+  .commentContent .text {
+    margin-left: 1em;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .commentContent .date {
+    margin-left: 1.5em;
+    font-style: italic;
+    font-size: 0.8em;
+  }
+  
+  /* Ações (like, resposta) */
+  .commentActions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 1.2em;
+  }
+  
+  .commentActions .icon {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 1rem;
+  }
+  
+  .commentActions .icon i {
+    font-size: 1.2rem;
+    color: #4caf50;
+    transition: color .2s;
+  }
+  
+  .commentActions .icon:hover i {
+    color: #2e7d32;
+  }
+  
+  .commentActions .icon p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #333;
+  }

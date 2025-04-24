@@ -120,42 +120,42 @@ export default function Home() {
       <div>
     <h1 id="courses-benefits-text" className="animate-on-scroll">O que nossos cursos oferecem?</h1>
     </div>
-    <section class="facts-about">
+    <section className="facts-about">
      
-      <div class="card animate-on-scroll">
-        <a class="card1" href="#">
+      <div className="card animate-on-scroll">
+        <a className="card1" href="#">
           <p>Aprenda de forma prática e acessível</p>
-          <p class="small" >
+          <p className="small" >
             Nossos cursos são 100% online, gratuitos e pensados para o dia a dia. Com materiais simples e técnicas criativas, você aprende a reutilizar, criar e transformar, mesmo sem experiência prévia.
           </p>
-          <div class="go-corner" href="#">
-            <div class="go-arrow">→</div>
+          <div className="go-corner" href="#">
+            <div className="go-arrow">→</div>
           </div>
         </a>
       </div>
 
      
-      <div class="card animate-on-scroll">
-        <a class="card1" href="#">
+      <div className="card animate-on-scroll">
+        <a className="card1" href="#">
           <p>Ganhe pontos e troque por recompensas</p>
-          <p class="small">
+          <p className="small">
             Ao concluir cursos, você acumula pontos que podem ser trocados por descontos em cursos pagos e produtos de empresas parceiras. Aprender no Reusa também é ser recompensado por suas conquistas!
           </p>
-          <div class="go-corner" href="#">
-            <div class="go-arrow">→</div>
+          <div className="go-corner" href="#">
+            <div className="go-arrow">→</div>
           </div>
         </a>
       </div>
 
     
-      <div class="card animate-on-scroll">
-        <a class="card1" href="#">
+      <div className="card animate-on-scroll">
+        <a className="card1" href="#">
           <p> Transforme lixo em oportunidade</p>
-          <p class="small">
+          <p className="small">
             Com o que seria descartado, você pode construir um novo futuro. Os cursos do Reusa mostram como gerar renda, desenvolver novas habilidades e ainda cuidar do planeta com cada criação.
           </p>
-          <div class="go-corner" href="#">
-            <div class="go-arrow">→</div>
+          <div className="go-corner" href="#">
+            <div className="go-arrow">→</div>
           </div>
         </a>
       </div>

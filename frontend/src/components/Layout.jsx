@@ -104,6 +104,15 @@ export default function Layout() {
               </li>
               <li className="nav-item">
                 <Link
+                  to="/Comunity"
+                  className={getNavLinkClass('/Comunity')}
+                  onClick={closeSidebar}
+                >
+                  Comunidade
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
                   to="/Prizes"
                   className={getNavLinkClass('/Prizes')}
                   onClick={closeSidebar}
@@ -154,6 +163,11 @@ export default function Layout() {
               <li className="nav-item">
                 <Link to="/Courses" className={getNavLinkClass('/Courses')}>
                   Cursos
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/Comunity" className={getNavLinkClass('/Comunity')}>
+                  Comunidade
                 </Link>
               </li>
               <li className="nav-item">
