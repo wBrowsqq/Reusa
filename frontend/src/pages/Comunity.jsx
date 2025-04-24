@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../assets/posts.module.css";
 import { posts } from "../data/postsData";
+import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const Comunity = () => {
@@ -8,7 +9,11 @@ const Comunity = () => {
     <section className={styles.catalogo}>
       <div className={styles.header}>
         <h2 className={styles.title}>Comunidade</h2>
+        <Link to="/Publish" className={styles.btn}>
+        Criar Postagem<i className="bi bi-plus-circle"></i>
+        </Link>
       </div>
+      
       <div className={styles.cardsContainer}>
         {Object.entries(posts).map(([key, post]) => (
           <div key={key} className={styles.card}>
