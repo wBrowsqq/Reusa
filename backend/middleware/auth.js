@@ -1,17 +1,10 @@
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-dotenv.config();
+import express from 'express';
+import { getMe, register, login } from '../controllers/authController.js';
 
-export function verifyJWT(req, res, next) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) return res.status(401).json({ error: 'Token não fornecido' });
+const router = express.Router();
 
-  const token = authHeader.split(' ')[1];
-  try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = payload.userId;
-    next();
-  } catch {
-    res.status(403).json({ error: 'Token inválido' });
-  }
-}
+router.get('/me', getMe); // configura o token
+router.post('/register', register); // configura o registro
+router.post('/login', login); // configura o login
+
+export default router;
