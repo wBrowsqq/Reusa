@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../assets/popup.module.css'; // Para o estilo, você pode criar o CSS
+import styles from '../../assets/popup.module.css'; // Para o estilo, você pode criar o CSS
 
 const Popup = ({ message, onClose }) => {
   return (

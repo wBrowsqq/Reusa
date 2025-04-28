@@ -6,10 +6,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const getMe = (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  const header = req.headers.authorization
+  const token = header.split(' ')[1]
 
   if (!token) {
-    return res.status(401).json({ message: 'Token não fornecido', field: 'token' });
+    return res.status(401).json({ message: 'Token não fornecido' });
   }
 
   try {
@@ -18,7 +19,7 @@ export const getMe = (req, res) => {
     const user = db.prepare('SELECT id, name, email, role FROM users WHERE id = ?').get(decoded.id);
 
     if (!user) {
-      return res.status(404).json({ message: 'Usuário não encontrado', field: 'user' });
+      return res.status(404).json({ message: 'Usuário não encontrado' });
     }
 
     res.json(user);
@@ -56,7 +57,7 @@ export const register = async (req, res) => {
     const stmt = db.prepare('INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)');
     const result = stmt.run(name, email, hashedPassword, 'user');
 
-    const token = jwt.sign({ id: result.lastInsertRowid, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: result.lastInsertRowid, role: 'user' }, process.env.JWT_SECRET, { expiresIn: '24h' });
 
     res.status(201).json({
       id: result.lastInsertRowid,
@@ -87,7 +88,7 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: 'Senha incorreta', field: 'password' });
     }
 
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '24h' });
 
     res.json({
       id: user.id,
